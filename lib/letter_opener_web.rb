@@ -7,7 +7,7 @@ require 'aws-sdk-s3'
 
 module LetterOpenerWeb
   class Config
-    attr_accessor :letters_location, :aws_access_key_id, :aws_secret_access_key, :aws_region, :aws_bucket
+    attr_accessor :letters_location, :aws_access_key_id, :aws_secret_access_key, :aws_region, :aws_bucket, :aws_endpoint
   end
 
   def self.config
@@ -29,6 +29,7 @@ module LetterOpenerWeb
     @aws_client ||= ::Aws::S3::Client.new(
       access_key_id: LetterOpenerWeb.config.aws_access_key_id,
       secret_access_key: LetterOpenerWeb.config.aws_secret_access_key,
+      endpoint: LetterOpenerWeb.config.aws_endpoint,
       region: LetterOpenerWeb.config.aws_region
     )
   end
